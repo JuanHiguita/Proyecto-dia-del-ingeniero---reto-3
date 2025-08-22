@@ -415,19 +415,28 @@ def map_internal_to_azure_devops(df: pd.DataFrame, work_item_type: str = "User S
         raise
 
 
-def load_azure_devops_csv(filepath: str) -> pd.DataFrame:
+def load_azure_devops_csv(filepath) -> pd.DataFrame:
     """
     Carga un archivo CSV con estructura de Azure DevOps y lo convierte a estructura interna.
     
     Args:
-        filepath (str): Ruta al archivo CSV de Azure DevOps
+        filepath: Ruta al archivo CSV de Azure DevOps o objeto UploadedFile de Streamlit
         
     Returns:
         pd.DataFrame: DataFrame con estructura interna
     """
     try:
-        # Cargar datos con estructura de Azure DevOps
-        df_azure = load_csv_data(filepath)
+        # Manejar diferentes tipos de entrada
+        if hasattr(filepath, 'read'):
+            # Es un objeto UploadedFile de Streamlit o similar
+            logger.info("Cargando archivo subido desde Streamlit...")
+            df_azure = pd.read_csv(filepath)
+        else:
+            # Es una ruta de archivo string
+            logger.info(f"Cargando archivo desde ruta: {filepath}")
+            df_azure = load_csv_data(filepath)
+        
+        logger.info(f"Archivo cargado con {len(df_azure)} filas y columnas: {df_azure.columns.tolist()}")
         
         # Convertir a estructura interna
         df_internal = map_azure_devops_to_internal(df_azure)

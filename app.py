@@ -185,6 +185,7 @@ def mostrar_carga_datos():
                     # Guardar en session state
                     st.session_state['backlog_data'] = df_backlog
                     st.session_state['backlog_path'] = backlog_path
+                    st.session_state['backlog_source'] = 'example'  # Indicar que es archivo de ejemplo
                 except Exception as e:
                     st.error(f"❌ Error cargando datos de ejemplo: {str(e)}")
                     logger.error(f"Error cargando backlog de ejemplo: {e}")
@@ -209,6 +210,9 @@ def mostrar_carga_datos():
             
             if uploaded_backlog is not None:
                 try:
+                    # Mostrar información del archivo subido
+                    st.info(f"📄 Archivo subido: {uploaded_backlog.name} ({uploaded_backlog.size} bytes)")
+                    
                     # Usar función de carga para Azure DevOps
                     df_backlog = load_azure_devops_csv(uploaded_backlog)
                     
@@ -217,14 +221,36 @@ def mostrar_carga_datos():
                     missing_cols = [col for col in required_cols if col not in df_backlog.columns]
                     
                     if missing_cols:
-                        st.error(f"❌ Columnas faltantes: {missing_cols}")
+                        st.error(f"❌ Columnas faltantes después del mapeo: {missing_cols}")
+                        st.info("💡 Verificando estructura del archivo original...")
+                        
+                        # Diagnóstico del archivo original
+                        uploaded_backlog.seek(0)  # Resetear posición del archivo
+                        df_original = pd.read_csv(uploaded_backlog)
+                        st.info(f"📊 Archivo original tiene columnas: {df_original.columns.tolist()}")
+                        st.dataframe(df_original.head(3), use_container_width=True)
                     else:
-                        st.success(f"✅ Backlog cargado: {len(df_backlog)} historias")
+                        st.success(f"✅ Archivo cargado: {len(df_backlog)} historias")
                         st.dataframe(df_backlog, use_container_width=True)
                         
                         # Guardar en session state
                         st.session_state['backlog_data'] = df_backlog
-                        st.session_state['backlog_path'] = None  # Archivo en memoria
+                        st.session_state['backlog_source'] = 'uploaded'  # Indicar que es archivo subido
+                        
+                except Exception as e:
+                    st.error(f"❌ Error procesando archivo: {str(e)}")
+                    logger.error(f"Error procesando archivo subido: {e}")
+                    
+                    # Diagnóstico adicional
+                    try:
+                        st.info("🔍 Intentando diagnóstico...")
+                        uploaded_backlog.seek(0)  # Resetear posición
+                        df_debug = pd.read_csv(uploaded_backlog)
+                        st.info(f"📋 Columnas detectadas: {df_debug.columns.tolist()}")
+                        st.info(f"📊 Primeras filas:")
+                        st.dataframe(df_debug.head(3), use_container_width=True)
+                    except Exception as debug_e:
+                        st.error(f"Error en diagnóstico: {debug_e}")
                         
                 except Exception as e:
                     st.error(f"❌ Error cargando archivo: {str(e)}")
@@ -299,15 +325,16 @@ def mostrar_analisis_completo(modo_invest: str):
                 historicos_path = st.session_state.get('historicos_path')
                 pipeline = InvestPipeline(modo_invest=modo_invest, historicos_path=historicos_path)
                 
-                # Procesar desde DataFrame en memoria si no hay path
-                if st.session_state.get('backlog_path'):
+                # Procesar usando DataFrame directamente o desde archivo
+                if st.session_state.get('backlog_source') == 'uploaded':
+                    # Usar DataFrame directamente para archivos subidos
+                    resultados = pipeline.procesar_backlog_dataframe(st.session_state['backlog_data'])
+                elif st.session_state.get('backlog_path'):
+                    # Usar archivo para datos de ejemplo
                     resultados = pipeline.procesar_backlog(st.session_state['backlog_path'])
                 else:
-                    # Guardar temporalmente el DataFrame
-                    temp_path = "temp_backlog.csv"
-                    st.session_state['backlog_data'].to_csv(temp_path, index=False)
-                    resultados = pipeline.procesar_backlog(temp_path)
-                    os.remove(temp_path)  # Limpiar archivo temporal
+                    st.error("❌ No hay datos de backlog disponibles")
+                    return
                 
                 # Guardar resultados en session state
                 st.session_state['resultados_analisis'] = resultados

@@ -7,9 +7,9 @@ import pandas as pd
 import logging
 import os
 from typing import List, Dict, Optional
-from utils import load_csv_data, validate_csv_structure, export_results_to_csv, load_azure_devops_csv
-from invest_agent import InvestAgent
-from regression_model import TimeEstimationModel
+from .utils import load_csv_data, validate_csv_structure, export_results_to_csv, load_azure_devops_csv
+from .invest_agent import InvestAgent
+from .regression_model import TimeEstimationModel
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
@@ -241,7 +241,7 @@ class InvestPipeline:
     
     def procesar_backlog(self, backlog_path: str) -> List[Dict]:
         """
-        Procesa backlog completo de historias.
+        Procesa backlog completo de historias desde archivo.
         
         Args:
             backlog_path (str): Ruta al archivo CSV del backlog
@@ -252,12 +252,28 @@ class InvestPipeline:
         try:
             # Cargar backlog usando formato Azure DevOps
             df_backlog = load_azure_devops_csv(backlog_path)
+            return self.procesar_backlog_dataframe(df_backlog)
             
+        except Exception as e:
+            logger.error(f"Error procesando backlog: {e}")
+            raise
+    
+    def procesar_backlog_dataframe(self, df_backlog: pd.DataFrame) -> List[Dict]:
+        """
+        Procesa backlog completo de historias desde DataFrame.
+        
+        Args:
+            df_backlog (pd.DataFrame): DataFrame con estructura interna del backlog
+            
+        Returns:
+            List[Dict]: Lista de resultados procesados
+        """
+        try:
             # Validar estructura (ahora con estructura interna)
             required_columns = ['ID', 'Historia']
             if not validate_csv_structure(df_backlog, required_columns):
                 raise ValueError(f"El backlog debe contener las columnas: {required_columns}")
-            
+
             logger.info(f"Procesando {len(df_backlog)} historias en modo {self.modo_invest}")
             
             # Procesar cada historia
@@ -271,7 +287,8 @@ class InvestPipeline:
             return resultados
             
         except Exception as e:
-            logger.error(f"Error procesando backlog: {str(e)}")
+            logger.error(f"Error procesando backlog DataFrame: {e}")
+            raise
             raise
     
     def generar_resumen_sprint(self, resultados: List[Dict]) -> Dict:
