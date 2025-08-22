@@ -1,0 +1,26 @@
+ID,Historia,Sprint,Prioridad
+11,Como usuario registrado quiero iniciar sesión en el sistema para acceder a mi panel personal,1,Alta
+12,Como administrador quiero gestionar usuarios del sistema para mantener la seguridad,1,Alta
+13,Como cliente quiero realizar compras online para adquirir productos desde casa,2,Media
+14,Como usuario quiero recuperar mi contraseña mediante email para acceder nuevamente,1,Media
+15,Como vendedor quiero publicar productos con fotos para mostrar mi inventario,2,Alta
+16,Como comprador quiero filtrar productos por categoría y precio para encontrar lo que necesito,2,Media
+17,Como usuario quiero recibir notificaciones de ofertas para aprovechar descuentos,3,Baja
+18,Como administrador quiero generar reportes de ventas mensuales para análisis financiero,3,Alta
+19,Como cliente quiero rastrear mis pedidos en tiempo real para conocer el estado de entrega,2,Alta
+20,Como usuario quiero personalizar mi perfil con foto y información para identificarme mejor,3,Baja
+21,Como usuario quiero registrarme con email y contraseña para acceder a funcionalidades personalizadas,3,Alta
+22,Como cliente quiero filtrar productos por precio y categoría para encontrar lo que necesito fácilmente,3,Alta
+23,Como administrador quiero exportar reportes de ventas en formato CSV para analizarlos en Excel,3,Media
+24,Como usuario quiero recibir una notificación por correo cuando mi pedido haya sido enviado para estar informado,3,Alta
+25,Como comprador quiero poder pagar con tarjeta de crédito y PayPal para tener opciones seguras de pago,4,Alta
+26,Como usuario quiero ver recomendaciones de productos en la página principal,4,Media
+27,Como administrador quiero poder cambiar configuraciones generales del sistema,4,Media
+28,Como cliente quiero tener la opción de guardar productos en favoritos,4,Baja
+29,Como usuario quiero poder actualizar mis datos personales en la configuración,4,Media
+30,Como vendedor quiero recibir un resumen semanal de mis ventas,4,Media
+31,Quiero que el sistema sea rápido y eficiente para que los usuarios estén felices,5,Baja
+32,El administrador debería tener todas las opciones posibles para gestionar cosas en el sistema,5,Media
+33,Como usuario quiero todo lo que sea necesario para mejorar mi experiencia,5,Baja
+34,"Como cliente quiero poder hacer compras, devoluciones, chatear con soporte y cambiar mi dirección en la misma pantalla",5,Alta
+35,Como empresa quiero que la plataforma sea escalable y fácil de usar,5,Alta

@@ -1,0 +1,11 @@
+ID,Work Item Type,Title,Assigned To,State,Tags
+11,"Task","Como usuario registrado quiero iniciar sesión en el sistema para acceder a mi panel personal",,"To Do","Sprint1,Alta"
+12,"Task","Como administrador quiero gestionar usuarios del sistema para mantener la seguridad",,"To Do","Sprint1,Alta"
+13,"Task","Como cliente quiero realizar compras online para adquirir productos desde casa",,"To Do","Sprint2,Media"
+14,"Task","Como usuario quiero recuperar mi contraseña mediante email para acceder nuevamente",,"To Do","Sprint1,Media"
+15,"Task","Como vendedor quiero publicar productos con fotos para mostrar mi inventario",,"To Do","Sprint2,Alta"
+16,"Task","Como comprador quiero filtrar productos por categoría y precio para encontrar lo que necesito",,"To Do","Sprint2,Media"
+17,"Task","Como usuario quiero recibir notificaciones de ofertas para aprovechar descuentos",,"To Do","Sprint3,Baja"
+18,"Task","Como administrador quiero generar reportes de ventas mensuales para análisis financiero",,"To Do","Sprint3,Alta"
+19,"Task","Como cliente quiero rastrear mis pedidos en tiempo real para conocer el estado de entrega",,"To Do","Sprint2,Alta"
+20,"Task","Como usuario quiero personalizar mi perfil con foto y información para identificarme mejor",,"To Do","Sprint3,Baja"

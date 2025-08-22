@@ -1,0 +1,16 @@
+ID,Historia,Horas,Criterios_INVEST,Tokens,Complejidad
+H_001,"Como usuario quiero iniciar sesión para acceder al sistema",8,5,12,Media
+H_002,"Como administrador quiero gestionar usuarios para mantener seguridad",12,4,10,Alta
+H_003,"Como cliente quiero comprar productos online para adquirir desde casa",16,6,13,Alta
+H_004,"Como usuario quiero recuperar contraseña por email para acceso",6,5,11,Baja
+H_005,"Como vendedor quiero publicar productos con fotos para mostrar inventario",10,5,12,Media
+H_006,"Como comprador quiero filtrar productos por categoría para encontrar necesario",14,4,13,Media
+H_007,"Como usuario quiero recibir notificaciones de ofertas para aprovechar descuentos",8,4,12,Baja
+H_008,"Como administrador quiero generar reportes mensuales para análisis financiero",18,5,11,Alta
+H_009,"Como cliente quiero rastrear pedidos en tiempo real para conocer estado",12,6,13,Media
+H_010,"Como usuario quiero personalizar perfil con foto para identificarme",6,4,11,Baja
+H_011,"Como gerente quiero dashboard ejecutivo para tomar decisiones estratégicas",20,3,10,Alta
+H_012,"Como cliente quiero métodos de pago múltiples para flexibilidad transaccional",10,5,11,Media
+H_013,"Como usuario quiero búsqueda avanzada para encontrar productos específicos",14,5,10,Media
+H_014,"Como vendedor quiero estadísticas de ventas para optimizar estrategia comercial",16,4,12,Alta
+H_015,"Como cliente quiero wishlist para guardar productos de interés futuro",8,5,10,Baja

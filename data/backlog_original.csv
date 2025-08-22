@@ -1,0 +1,11 @@
+ID,Historia,Sprint,Prioridad
+H1,"Como usuario registrado quiero iniciar sesión en el sistema para acceder a mi panel personal",1,Alta
+H2,"Como administrador quiero gestionar usuarios del sistema para mantener la seguridad",1,Alta
+H3,"Como cliente quiero realizar compras online para adquirir productos desde casa",2,Media
+H4,"Como usuario quiero recuperar mi contraseña mediante email para acceder nuevamente",1,Media
+H5,"Como vendedor quiero publicar productos con fotos para mostrar mi inventario",2,Alta
+H6,"Como comprador quiero filtrar productos por categoría y precio para encontrar lo que necesito",2,Media
+H7,"Como usuario quiero recibir notificaciones de ofertas para aprovechar descuentos",3,Baja
+H8,"Como administrador quiero generar reportes de ventas mensuales para análisis financiero",3,Alta
+H9,"Como cliente quiero rastrear mis pedidos en tiempo real para conocer el estado de entrega",2,Alta
+H10,"Como usuario quiero personalizar mi perfil con foto y información para identificarme mejor",3,Baja
